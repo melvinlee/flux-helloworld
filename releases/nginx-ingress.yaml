@@ -5,7 +5,7 @@ metadata:
   name: nginx-ingress
   namespace: ingress
   annotations:
-    fluxcd.io/automated: "true"
+    fluxcd.io/automated: "false"
 spec:
   releaseName: nginx-ingress
   chart:
