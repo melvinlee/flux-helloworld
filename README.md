@@ -2,7 +2,35 @@
 
 This example demostrate how to install and configure Flux and Helm Operator on AKS cluter.
 
-In this example, we are deploying `Istio`, `Nginx Ingress`, `Weavescope` with FluxCD.
+In this example, we are deploying `Istio`, `Nginx Ingress`, `Weavescope`, etc with FluxCD.
+
+This config has the following folder structure.
+
+```sh
+.
+├── README.md
+├── launch.config
+├── launch.sh
+├── namespaces
+│   ├── ingress.yaml
+│   ├── istio-system.yaml
+│   ├── monitoring.yaml
+│   └── weavescope.yaml
+├── releases
+│   ├── grafana.yaml
+│   ├── nginx-ingress.yaml
+│   ├── prometheus.yaml
+│   └── weavescope.yaml
+└── workloads
+    ├── istio-controlplane.yaml
+    ├── istio-operator.yaml
+    └── ms-agentconfig.yaml
+```
+
+Inside the release directory there are HelmRelease defination.
+
+The workloads directory contain workload for the chart that we deployed or additional resources to be deployed.
+
 
 ## Prerequisite (Optional)
 
@@ -26,6 +54,12 @@ Create the fluxcd namespace:
 kubectl create ns fluxcd
 ```
 
+Add FluxCD repository:
+
+```sh
+helm repo add fluxcd https://charts.fluxcd.io
+```
+
 Install Flux by specifying your fork URL (replace fluxcd with your GitHub username):
 
 ```sh
@@ -33,6 +67,8 @@ helm upgrade -i flux fluxcd/flux --wait \
 --namespace fluxcd \
 --set registry.pollInterval=1m \
 --set git.pollInterval=1m \
+--set syncGarbageCollection.enabled=true \
+--set git.readonly=true \
 --set git.url=git@github.com:melvinlee/flux-helloworld
 ```
 
