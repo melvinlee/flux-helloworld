@@ -7,6 +7,7 @@ instuction()
 {
     echo ""
     echo "Usage: launch.sh aks"
+    echo "Usage: launch.sh destroy"
 }
 
 if [ $# -lt 1 ]; then
@@ -25,3 +26,8 @@ if [ "$1" = "aks" ];then
     az aks create -g $RESOURCEGROUP -n $CLUSTERNAME --enable-managed-identity --no-ssh-key --output json
 fi
 
+if [ "$1" == "destroy" ];then
+
+    echo "Deleting resources..."
+    az group delete -n $RESOURCEGROUP --no-wait
+fi

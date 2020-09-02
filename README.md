@@ -48,19 +48,19 @@ az aks get-credentials --resource-group <your-rg> --name <your-aks>
 
 ## QuickStart (Get started with Flux using Helm)
 
-Create the fluxcd namespace:
+1. Create the fluxcd namespace:
 
 ```sh
 kubectl create ns fluxcd
 ```
 
-Add FluxCD repository:
+2. Add FluxCD repository:
 
 ```sh
 helm repo add fluxcd https://charts.fluxcd.io
 ```
 
-Install Flux by specifying your fork URL (replace fluxcd with your GitHub username):
+3. Install Flux by specifying your fork URL (replace fluxcd with your GitHub username):
 
 ```sh
 helm upgrade -i flux fluxcd/flux --wait \
@@ -72,17 +72,23 @@ helm upgrade -i flux fluxcd/flux --wait \
 --set git.url=git@github.com:melvinlee/flux-helloworld
 ```
 
-Install the HelmRelease Kubernetes custom resource definition:
+4. Install the HelmRelease Kubernetes custom resource definition:
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
 ```
 
-Install Flux Helm Operator with Helm v3 support:
+5. Install Flux Helm Operator with Helm v3 support:
 
 ```sh
 helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 --namespace fluxcd \
 --set git.ssh.secretName=flux-git-deploy \
 --set helm.versions=v3
+```
+
+6. Cleanup
+
+```sh 
+./launch destroy
 ```
