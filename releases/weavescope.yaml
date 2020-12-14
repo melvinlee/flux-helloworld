@@ -26,3 +26,6 @@ spec:
       service:
         port: 80
         type: "LoadBalancer"
+    weave-scope-agent:
+      enabled: true
+      readOnly: true
