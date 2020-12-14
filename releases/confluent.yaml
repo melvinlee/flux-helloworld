@@ -10,7 +10,7 @@ spec:
   releaseName: confluent-oss
   chart:
     repository: https://confluentinc.github.io/cp-helm-charts/
-    name: confluentinc/cp-helm-charts
+    name: cp-helm-charts
     version: 0.6.0
   values:
     ## ------------------------------------------------------
