@@ -1,0 +1,15 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: confluent-oss
+  namespace: confluent
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: confluent-oss
+  chart:
+    repository: https://confluentinc.github.io/cp-helm-charts/
+    name: confluentinc/cp-helm-charts
+    version: 0.6.0
+  values:
