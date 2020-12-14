@@ -13,3 +13,8 @@ spec:
     name: confluentinc/cp-helm-charts
     version: 0.6.0
   values:
+    ## ------------------------------------------------------
+    ## Kafka Connect
+    ## ------------------------------------------------------
+    cp-kafka-connect:
+      enabled: false
