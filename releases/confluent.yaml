@@ -19,6 +19,19 @@ spec:
     cp-zookeeper:
       servers: 5
     ## ------------------------------------------------------
+    ## Kafka
+    ## ------------------------------------------------------
+    cp-kafka:
+      enabled: true
+      brokers: 6
+      image: confluentinc/cp-enterprise-kafka
+      imageTag: 6.0.1
+      persistence:
+        enabled: true
+        # storageClass: ""
+        size: 50Gi
+        disksPerBroker: 1
+    ## ------------------------------------------------------
     ## Kafka Connect
     ## ------------------------------------------------------
     cp-kafka-connect:
